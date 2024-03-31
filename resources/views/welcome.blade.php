@@ -57,9 +57,10 @@
                         <td>{{ $item->municipality }}</td>      
                         <td>{{ $item->contact_number }}</td> 
                         <td>
-                            <a href='#' class='edit' data-toggle='modal' data-target='#editEmployeeModal' title='Edit' data-toggle='tooltip'><i class='material-icons'>&#xE254;</i></a>
-                            <a href='#' class='delete' title='Delete' data-toggle='tooltip' ><i class='material-icons'>&#xE872;</i></a>
-                        </td>      
+                        <td>
+                            <a href='{{ url("/edit/{$item->id}") }}' class='edit' data-toggle='modal' data-target='#editEmployeeModal' title='Edit' data-toggle='tooltip'><i class='material-icons'>&#xE254;</i></a>
+                            <a href='{{ url("/delete/{$item->id}") }}' title='Delete' data-toggle='tooltip'><i class='material-icons'>&#xE254;</i></a>
+                        </td>  
                     </tr>
                 @endforeach
             </tbody>
@@ -67,7 +68,7 @@
     </div>
 </div>
 
-    <!-- Add Modal HTML -->
+    <!-- Add Modal -->
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -152,11 +153,13 @@
     </div>
 
 
-    <!-- Edit Modal HTML -->
+    <!-- Edit Modal -->
     <div id="editEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form id="editEmployeeForm" action="{{ url('/update_records') }}" method="post">
+                    @csrf
+                    
                     <div class="modal-header">                       
                         <h4 class="modal-title">Edit Employee</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -168,11 +171,11 @@
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control" value="{{ $info->email }}" required>
+                            <input type="email" name="email" class="form-control" value="{info->email }}" required>
                         </div>
                         <div class="form-group">
                             <label>Age</label>
-                            <input type="number" name="age" class="form-control" value="{{ $info->age }}" required>
+                            <input type="number" name="age" class="form-control" value="{info->age }}" required>
                         </div>
                         <div class="form-group">
                             <label>Birthdate</label>
